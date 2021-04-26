@@ -1,0 +1,62 @@
+
+<br><br>
+
+<div *ngIf="!password" class="signup-form">
+
+  <form (ngSubmit)="f.form.valid && onSubmit() " #f="ngForm" novalidate class="register-form" id="register-form">
+  <!-- fullname start -->
+  <span [ngClass]="password == false ? 'error' : 'success'" > {{resonse}}</span>
+
+<div class="form-group">
+  <label for=" email" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Email
+    <span *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+      <span *ngIf="email.errors"> is required</span>
+    </span> :-
+</label>
+<input type="text" name="email" id="email" [(ngModel)]="verifyData.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" aria-describedby="email" required/>
+
+</div>
+ <!-- fullname end-->
+
+            <div class="form-group">
+              <label for=" otp" [ngClass]="{ 'is-invalid-text': f.submitted && otp.invalid }">OTP
+                <span *ngIf="f.submitted && otp.invalid" class="invalid-feedback">
+                  <span *ngIf="otp.errors">is required</span>
+                </span>  :-
+              </label>
+              <input type="text" name="otp" id="otp" [(ngModel)]="verifyData.password" #otp="ngModel" [ngClass]="{ 'is-invalid': f.submitted && otp.invalid }" aria-describedby="otp" required/>
+              
+            </div>
+          
+ <!-- fullname end  
+ end of  if user select married status Yes 
+   -->
+  
+        <div class="form-submit">
+            <button type="submit" > Submit </button>
+            <button type="reset" (click)="resonse = ' ' " > Reset </button>
+        </div>
+        </form>
+        </div>
+  
+<br>
+  
+<form (ngSubmit)="f.form.valid && onSubmit() " #f="ngForm" novalidate class="register-form" id="register-form">
+
+<!-- fullname start -->
+<div *ngIf="password" class="form-group">
+
+    <label [ngClass]="{ 'is-invalid-text': f.submitted && password.invalid }">password:<span *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+        <span *ngIf="password.errors"> password is required</span>
+        {{password.errors}}
+    </span>
+  </label>
+    <input type="password"  name="password" class="form-control" [(ngModel)]="verifyPass.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"  required>
+    <div class="form-submit">
+      <button type="submit" > Submit </button>
+      <button type="reset"> Reset </button>
+    </div>
+  </div>
+    
+</form>
+<!-- fullname end -->

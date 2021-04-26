@@ -1,0 +1,233 @@
+<br><br>
+<div class="signup-form">
+  <form (ngSubmit)="f.form.valid && onSubmit() " #f="ngForm" novalidate class="register-form" id="register-form">
+      <h2>student registration form</h2>
+      <div class="form-row">
+<!-- title start -->
+<div class="form-group">
+  <label [ngClass]="{ 'is-invalid-text': f.submitted && title.invalid }">Title<span *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+
+      <span *ngIf="title.errors">&nbsp;is required</span>
+  </span>
+</label>
+              <select name="title" class="form-control"  [(ngModel)]="signUpData.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }" required>
+                  <option value=""></option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Ms">Ms</option>
+              </select>
+              <span *ngIf="f.submitted && title.invalid" class="invalid-feedback">
+                  <span *ngIf="title.errors">Title is required</span>
+              </span>
+              
+          </div>
+<!-- title end -->
+<!-- fullname start -->
+          <div class="form-group">
+              <label [ngClass]="{ 'is-invalid-text': f.submitted && name.invalid }">Full Name
+            </label>
+              <input type="text" name="name" class="form-control" [(ngModel)]="signUpData.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" aria-describedby="name" required>
+              <span *ngIf="f.submitted && name.invalid" class="invalid-feedback">
+                <span *ngIf="name.errors"> Full-Name is required</span>
+            </span>
+          </div>
+      </div>
+<!-- fullname end -->
+<!-- address start -->
+
+      <div class="form-group">
+          <label for=" address" [ngClass]="{ 'is-invalid-text': f.submitted && address.invalid }">Address:-
+         
+        </label>
+        <input type="text" name="address" id="address" [(ngModel)]="signUpData.address" #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.invalid }" aria-describedby="address" required/>
+        <span *ngIf="f.submitted && address.invalid" class="invalid-feedback">
+          <span *ngIf="address.errors">Address is required</span>
+      </span>
+      </div>
+<!-- address end -->
+<!-- pincode start -->
+
+      <div class="form-group">
+          <label for=" pincode" [ngClass]="{ 'is-invalid-text': f.submitted && pincode.invalid }">pincode:-</label>
+          <input type="text" name="pincode" id="pincode" [(ngModel)]="signUpData.pincode" #pincode="ngModel" [ngClass]="{ 'is-invalid': f.submitted && pincode.invalid }" aria-describedby="pincode" required/>
+          <span *ngIf="f.submitted && pincode.invalid" class="invalid-feedback">
+            <span *ngIf="pincode.errors">Pincode is required</span>
+        </span>
+      </div>
+
+<!-- pincode end -->
+<!-- gender start -->
+
+<div class="form-radio">
+          <label for="gender" class="radio-label">Gender :</label>
+          <div class="form-radio-item">
+              <label  for="male" >male</label>
+              <input  type="radio"  [(ngModel)]="signUpData.gender"  #male="ngModel" id="male" name="gender" value="male">&nbsp;&nbsp;
+              <span class="check"></span>
+          </div>
+          <div class="form-radio-item">
+              <label  for="female" >female</label>
+              <input  type="radio"  [(ngModel)]="signUpData.gender"  #female="ngModel" id="female" name="gender" value="female">&nbsp;&nbsp;
+              <span class="check"></span>
+          </div>
+          
+      </div>
+<!-- gender end -->
+
+<!-- date_of_birth start -->
+<div class="form-group col">
+              <label for=" address" [ngClass]="{ 'is-invalid-text': f.submitted && birth_date.invalid }">Date of birth:</label>
+
+              <input type="date" name="birth_date" id="birth_date" [(ngModel)]="signUpData.birth_date"  #birth_date="ngModel" [ngClass]="{ 'is-invalid': f.submitted && birth_date.invalid }" required pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$">
+              <span *ngIf="f.submitted && birth_date.invalid" class="invalid-feedback">
+                <span *ngIf="birth_date.errors">Date Of Birth is required</span>
+            </span>
+            </div>
+<!-- date_of_birth end -->
+
+
+<!-- email div start -->
+<div class="form-group col">
+
+  <label for="email" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Email:{{checkEmailMessage}} </label>
+
+
+  <input type="email" id="email"name="email" [(ngModel)]="signUpData.email" #email="ngModel" (change)="checkEmail()" [ngClass]="{ 'is-invalid':f.submitted && email.invalid }"
+  [ngClass]="{ 'is-success': emailBorderSuccessMessage }"  required email>
+
+  <span *ngIf=" f.submitted && email.invalid" class="invalid-feedback">
+    <span *ngIf="email.errors">Email is required</span><br>
+    <span *ngIf="email.errors">Email must be a valid email address</span>
+</span>
+</div>
+<!-- email div start -->
+<div class="form-group col">
+
+  <label for="password" [ngClass]="{ 'is-invalid-text': f.submitted && password.invalid }">Password </label>
+
+
+  <input type="password" id="password"name="password" [(ngModel)]="signUpData.password" #password="ngModel"  [ngClass]="{ 'is-invalid':f.submitted && password.invalid }" required password>
+
+  <span *ngIf=" f.submitted && password.invalid" class="invalid-feedback">
+    <span *ngIf="password.errors">password is required</span>
+</span>
+</div>
+
+
+
+<!-- married status radio button start -->
+              
+<div class="form-radio">
+  <label for="gender" class="radio-label">Married Status :</label>
+  <div class="form-radio-item">
+      <label  for="married" >Yes</label>
+      <input  type="radio"  [(ngModel)]="signUpData.married"  (change)="changeValue('marriedStatus',status)"   #married="ngModel" id="married" name="married" value="yes">&nbsp;&nbsp;
+      <span class="check"></span>
+  </div>
+  <div class="form-radio-item">
+      <label  for="nomarried" >No</label>
+      <input  type="radio"  [(ngModel)]="signUpData.married"  (change)="changeValue('statusMarried',status)" #nomarried="ngModel" id="nomarried" name="nomarried" value="false">&nbsp;&nbsp;
+      <span class="check"></span>
+  </div>
+</div>
+
+
+
+
+<!-- start of  if user not select married status Yes -->
+
+<div *ngIf="status.statusMarried">
+  <div class="form-group col">
+
+    <label for=" address" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Email:</label>
+  <input type="text" name="data" [(ngModel)]="signUpData.data" #data="ngModel" [ngClass]="{ 'is-invalid':f.submitted && data.invalid }" required email>
+  <span *ngIf=" f.submitted && data.invalid" class="invalid-feedback">
+    <span *ngIf="data.errors">&nbsp; is required</span>
+</span>
+  </div>
+   </div>
+<!--end of  if user not select married status Yes -->
+
+   <!--end of  if user select married status Yes -->
+   <div *ngIf="status.marriedStatus">
+
+  <div class="form-group col">
+
+    <label for=" address" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Email:<span *ngIf=" f.submitted && some.invalid" class="invalid-feedback">
+        <span *ngIf="some.errors">&nbsp; is required</span>
+    </span>
+  </label>
+  
+  
+    <input type="some" name="some" [(ngModel)]="signUpData.some" #some="ngModel" [ngClass]="{ 'is-invalid':f.submitted && some.invalid }" required>
+    
+  </div>
+  <!-- select occupation -->
+
+  <div class="form-radio">
+    <label for="gender" class="radio-label">Occupation:</label>
+    <div class="form-radio-item">
+        <label  for="Govt" >Govt</label>
+        <input  type="radio"  [(ngModel)]="signUpData.occupation"  (change)="changeValue('govt',org_status)"   #Govt="ngModel" id="Govt" name="Govt" value="govt">&nbsp;&nbsp;
+        <span class="check"></span>
+    </div>
+    <div class="form-radio-item">
+        <label  for="Pvt" >Pvt</label>
+        <input  type="radio"  [(ngModel)]="signUpData.occupation"  (change)="changeValue('pvt',org_status)"   #Pvt="ngModel" id="Pvt" name="Pvt" value="pvt">&nbsp;&nbsp;
+        <span class="check"></span>
+    </div>
+    <div class="form-radio-item">
+        <label  for="bussiness" >Bussiness</label>
+        <input  type="radio"  [(ngModel)]="signUpData.occupation"  (change)="changeValue('bussiness',org_status)"   #bussiness="ngModel" id="bussiness" name="bussiness" value="bussines">&nbsp;&nbsp;
+        <span class="check"></span>
+    </div>
+    <div class="form-radio-item">
+        <label  for="other" >Other / HouseWife</label>
+        <input  type="radio"  [(ngModel)]="signUpData.occupation"  (change)="changeValue('other',org_status)"   #other="ngModel" id="other" name="other" value="other">&nbsp;&nbsp;
+        <span class="check"></span>
+    </div>
+    
+  </div>
+<div *ngIf="org_status.govt || org_status.pvt || org_status.bussiness">
+
+  <div class="form-group col">
+
+    <label for="org" [ngClass]="{ 'is-invalid-text': f.submitted && org.invalid }">Orgainzation name :</label>
+  <input type="text" name="org" [(ngModel)]="signUpData.org" #org="ngModel" [ngClass]="{ 'is-invalid':f.submitted && org.invalid }" required >
+  <span *ngIf=" f.submitted && org.invalid" class="invalid-feedback">
+    <span *ngIf="org.errors">&nbsp; is required</span>
+</span>
+</div>
+
+  <div class="form-group col">
+
+    <label for="position" [ngClass]="{ 'is-invalid-text': f.submitted && position.invalid }">Position:</label>
+  <input type="text" name="position" [(ngModel)]="signUpData.position" #position="ngModel" [ngClass]="{ 'is-invalid':f.submitted && position.invalid }" required >
+  <span *ngIf=" f.submitted && position.invalid" class="invalid-feedback">
+    <span *ngIf="position.errors">&nbsp; is required</span>
+</span>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+  <!-- end div of select occupation -->
+  
+</div>
+<!--end of  if user select married status Yes -->
+
+
+      <div class="form-submit">
+          <button type="submit" > Submit </button>
+          <button type="reset"> Reset </button>
+          </div>
+      </form>
+</div>
+

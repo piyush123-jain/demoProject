@@ -1,0 +1,29 @@
+<br><br>
+<form (ngSubmit)="f.form.valid && onSubmit() " #f="ngForm" novalidate class="login-form" id="login-form">
+
+    <div class="form-group">
+        <label for=" address" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">email
+          <span *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+            <span *ngIf="email.errors">is required</span>:-
+        </span> 
+      </label>
+      <input type="text" name="email" id="email" [(ngModel)]="loginData.email" #email="ngModel" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" aria-describedby="email" required/>
+      
+    </div>
+    <div class="form-group">
+        <label for=" address" [ngClass]="{ 'is-invalid-text': f.submitted && otp.invalid }">otp
+          <span *ngIf="f.submitted && otp.invalid" class="invalid-feedback">
+            <span *ngIf="otp.errors">is required</span>
+        </span>
+        :-
+       
+      </label>
+      <input type="text" name="otp" id="otp" [(ngModel)]="loginData.otp" #otp="ngModel" [ngClass]="{ 'is-invalid': f.submitted && otp.invalid }" aria-describedby="otp" required/>
+      
+    </div>
+    <div class="form-submit">
+        <button type="submit" > Submit </button>
+        <button type="reset"> Reset </button>
+        </div>
+    
+    </form>
