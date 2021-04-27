@@ -59,8 +59,14 @@
 <!-- pincode end -->
 <!-- gender start -->
 
-<div class="form-radio">
-          <label for="gender" class="radio-label">Gender :</label>
+<div class="form-radio" >
+          <label for="gender" class="radio-label" [ngClass]="{ 'is-invalid-text': f.submitted && !gender.dirty }">Gender : 
+            <span *ngIf="f.submitted && !gender.dirty  "  [ngClass]="{ 'is-invalid-text': f.submitted && !gender.dirty }" class="invalid-feedback">
+              <span >is required</span>
+            </span>
+
+
+          </label>
           <div class="form-radio-item">
               <label  for="male" >male</label>
               <input  type="radio"  [(ngModel)]="signUpData.gender"  #male="ngModel" id="male" name="gender" value="male">&nbsp;&nbsp;
@@ -68,11 +74,14 @@
           </div>
           <div class="form-radio-item">
               <label  for="female" >female</label>
-              <input  type="radio"  [(ngModel)]="signUpData.gender"  #female="ngModel" id="female" name="gender" value="female">&nbsp;&nbsp;
+              <input  type="radio"  [(ngModel)]="signUpData.gender"  #gender="ngModel" id="female" name="gender" value="female">&nbsp;&nbsp;
               <span class="check"></span>
           </div>
-          
-      </div>
+        </div>
+
+
+
+
 <!-- gender end -->
 
 <!-- date_of_birth start -->
@@ -90,7 +99,7 @@
 <!-- email div start -->
 <div class="form-group col">
 
-  <label for="email" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid ||this.emailBorderSuccessMessage}">Email:{{checkEmailMessage}} </label>
+  <label for="email" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Email:{{checkEmailMessage}} </label>
 
 
   <input type="email" id="email"name="email" [(ngModel)]="signUpData.email" #email="ngModel" (change)="checkEmail()" [ngClass]="{ 'is-invalid':f.submitted && email.invalid }"
@@ -125,8 +134,8 @@
 		formControlName="phone"
 	></ngx-intl-tel-input>
 </form> -->
-<input  type="text" ng2TelInput (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)" (intlTelInputObject)="telInputObject($event)" 
- (countryChange)="onCountryChange($event)" />
+<!-- <input  type="text" ng2TelInput (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)" (intlTelInputObject)="telInputObject($event)" 
+ (countryChange)="onCountryChange($event)" /> -->
 
 <input type="tel" id="phone" name="phone"  [(ngModel)]="signUpData.phone" #phone="ngModel" [ngClass]="{ 'is-invalid':f.submitted && phone.invalid }" required phone>
 
@@ -162,7 +171,13 @@
 <!-- married status radio button start -->
               
 <div class="form-radio">
-  <label for="gender" class="radio-label">Married Status :</label>
+  <label for="married" class="radio-label" [ngClass]="{ 'is-invalid-text': f.submitted && !married.dirty }">Married Status 
+    
+    <span *ngIf="f.submitted && !married.dirty  "  [ngClass]="{ 'is-invalid-text': f.submitted && !married.dirty }" class="invalid-feedback">
+      <span >is required</span>
+    </span>
+    
+    :</label>
   <div class="form-radio-item">
       <label  for="married" >Yes</label>
       <input  type="radio"  [(ngModel)]="signUpData.married"  (change)="changeValue('marriedStatus',status)"   #married="ngModel" id="married" name="married" value="yes">&nbsp;&nbsp;
@@ -170,7 +185,7 @@
   </div>
   <div class="form-radio-item">
       <label  for="nomarried" >No</label>
-      <input  type="radio"  [(ngModel)]="signUpData.married"  (change)="changeValue('statusMarried',status)" #nomarried="ngModel" id="nomarried" name="nomarried" value="false">&nbsp;&nbsp;
+      <input  type="radio"  [(ngModel)]="signUpData.married"  (change)="changeValue('statusMarried',status)" #married="ngModel" id="nomarried" name="nomarried" value="false">&nbsp;&nbsp;
       <span class="check"></span>
   </div>
 </div>

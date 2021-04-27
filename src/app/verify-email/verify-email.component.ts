@@ -26,5 +26,4 @@ export class VerifyEmailComponent {
 onSubmit() {
     console.log(this.verifyData);
   this.socket.connectionWithServer(this.verifyData,'/verifyEmail');  }
-setPasswrod(){this.socket.connectionWithServer(this.verifyPass,'/setPassword'); }
 }

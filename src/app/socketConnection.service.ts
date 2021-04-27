@@ -29,10 +29,11 @@ export class socketConnectionService {
     }
     
   connectionWithServer(login: any,loginUrl: string){
-  this.http.post(environment.serverUrl+loginUrl,'demo123s@mailinator.com').subscribe((data)=>{
-  this.pushSource.next(data)
-  })
+    this.http.post(environment.serverUrl+loginUrl,login).subscribe((data)=>{
+    this.pushSource.next(data)
+    })
   }
+
   PasswordMatchOrNot(values:any){
   this.passwordMatchValue.next(values);
   }

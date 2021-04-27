@@ -8,10 +8,13 @@ import { socketConnectionService } from '../socketConnection.service';
 })
 export class LoginComponent implements OnInit {
   public loginData: any = { };
+  response:any = ' ';
+  responseBoolean: any = false;
   constructor(private socket : socketConnectionService) {
     this.socket.serverMessage$.subscribe(data=>{
-      console.log('data');
-      console.log(data);  
+        this.response= data['message'];
+        this.responseBoolean= data['value'];
+        
     })
 
    }

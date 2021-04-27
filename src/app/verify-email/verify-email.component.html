@@ -1,7 +1,7 @@
 
 <br><br>
 
-<div *ngIf="!password" class="signup-form">
+<div  class="signup-form">
 
   <form (ngSubmit)="f.form.valid && onSubmit() " #f="ngForm" novalidate class="register-form" id="register-form">
   <!-- fullname start -->
@@ -41,22 +41,5 @@
   
 <br>
   
-<form (ngSubmit)="f.form.valid && onSubmit() " #f="ngForm" novalidate class="register-form" id="register-form">
 
-<!-- fullname start -->
-<div *ngIf="password" class="form-group">
-
-    <label [ngClass]="{ 'is-invalid-text': f.submitted && password.invalid }">password:<span *ngIf="f.submitted && password.invalid" class="invalid-feedback">
-        <span *ngIf="password.errors"> password is required</span>
-        {{password.errors}}
-    </span>
-  </label>
-    <input type="password"  name="password" class="form-control" [(ngModel)]="verifyPass.password" #password="ngModel" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }"  required>
-    <div class="form-submit">
-      <button type="submit" > Submit </button>
-      <button type="reset"> Reset </button>
-    </div>
-  </div>
-    
-</form>
 <!-- fullname end -->
