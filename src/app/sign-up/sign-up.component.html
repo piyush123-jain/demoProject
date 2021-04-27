@@ -125,7 +125,10 @@
 		formControlName="phone"
 	></ngx-intl-tel-input>
 </form> -->
-  <input type="tel" id="phone" name="phone"  [(ngModel)]="signUpData.phone" #phone="ngModel" [ngClass]="{ 'is-invalid':f.submitted && phone.invalid }" required phone>
+<input  type="text" ng2TelInput (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)" (intlTelInputObject)="telInputObject($event)" 
+ (countryChange)="onCountryChange($event)" />
+
+<input type="tel" id="phone" name="phone"  [(ngModel)]="signUpData.phone" #phone="ngModel" [ngClass]="{ 'is-invalid':f.submitted && phone.invalid }" required phone>
 
 
 </div>

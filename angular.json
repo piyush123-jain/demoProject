@@ -30,11 +30,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              
-              "src/styles.css"
-            ],
-            "scripts": []
+            "styles": ["node_modules/intl-tel-input/build/css/intlTelInput.css"],
+            "scripts": ["node_modules/intl-tel-input/build/js/intlTelInput.min.js"]
           },
           "configurations": {
             "production": {

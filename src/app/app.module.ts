@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CommonModule } from '@angular/common';
 import { MustMatchPasswordDirective } from './must-match-password.directive';
+import {Ng2TelInputModule} from 'ng2-tel-input';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { MustMatchPasswordDirective } from './must-match-password.directive';
     VerifyEmailComponent,
     MustMatchPasswordDirective,
  ],
-  imports: [FormsModule,
+  imports: [FormsModule,Ng2TelInputModule ,
     HttpClientModule,CommonModule,
     BrowserModule,ReactiveFormsModule,
     AppRoutingModule,

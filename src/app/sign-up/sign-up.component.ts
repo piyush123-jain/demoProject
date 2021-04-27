@@ -14,6 +14,7 @@ import * as isValid from '../must-match-password.directive';
 })
 export class SignUpComponent implements OnInit {
   
+  
   public signUpData: any = {};
   demo = false;
   successMessage = false;
@@ -85,7 +86,6 @@ else
 
 
 }
-
 
 }
 
