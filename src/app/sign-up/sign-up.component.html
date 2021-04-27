@@ -90,7 +90,7 @@
 <!-- email div start -->
 <div class="form-group col">
 
-  <label for="email" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Email:{{checkEmailMessage}} </label>
+  <label for="email" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid ||this.emailBorderSuccessMessage}">Email:{{checkEmailMessage}} </label>
 
 
   <input type="email" id="email"name="email" [(ngModel)]="signUpData.email" #email="ngModel" (change)="checkEmail()" [ngClass]="{ 'is-invalid':f.submitted && email.invalid }"
@@ -104,17 +104,57 @@
 <!-- email div start -->
 <div class="form-group col">
 
-  <label for="password" [ngClass]="{ 'is-invalid-text': f.submitted && password.invalid }">Password </label>
+  <label for="Phone" [ngClass]="{ 'is-invalid-text': f.submitted && email.invalid }">Phone 
+    <span *ngIf=" f.submitted && phone.invalid" class="invalid-feedback">
+      <span *ngIf="phone.errors">phone is required</span><br>
+      <span *ngIf="phone.errors">phone must be a valid Phone</span>
+  </span>:-
+ </label>
+ <!-- <form #f="ngForm" [formGroup]="phoneForm">
+	<ngx-intl-tel-input
+		[cssClass]="'custom'"
+		[preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+		[enableAutoCountrySelect]="false"
+		[enablePlaceholder]="true"
+		[searchCountryFlag]="true"
+		[searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+		[selectFirstCountry]="false"
+		[selectedCountryISO]="CountryISO.India"
+		[phoneValidation]="true"
+		name="phone"
+		formControlName="phone"
+	></ngx-intl-tel-input>
+</form> -->
+  <input type="tel" id="phone" name="phone"  [(ngModel)]="signUpData.phone" #phone="ngModel" [ngClass]="{ 'is-invalid':f.submitted && phone.invalid }" required phone>
 
 
-  <input type="password" id="password"name="password" [(ngModel)]="signUpData.password" #password="ngModel"  [ngClass]="{ 'is-invalid':f.submitted && password.invalid }" required password>
-
-  <span *ngIf=" f.submitted && password.invalid" class="invalid-feedback">
-    <span *ngIf="password.errors">password is required</span>
-</span>
 </div>
+<!-- email div start -->
 
+<div ngModelGroup="passwords" #passwords="ngModelGroup" appCheckPassword>
+  <div class="form-group">
+    <label for="password"  [ngClass]="{ 'is-invalid-text': f.submitted && password.invalid }">Password
+      <span *ngIf=" f.submitted && confirmPassword.invalid" class="invalid-feedback">
+        <span *ngIf="confirmPassword.errors">is required</span>
+    </span>:-
 
+    </label>
+    <input type="password" class="form-control" id="password" placeholder="Password" #password="ngModel" name="password" [ngClass]="{ 'is-invalid':f.submitted && password.invalid }" required password
+     required id="password" [(ngModel)]="signUpData.password">
+  </div>
+  <div class="form-group mt-1">
+    <label for="confirmPassword"> Confirm Password  <span *ngIf=" f.submitted && confirmPassword.invalid" class="invalid-feedback">
+      <span *ngIf="confirmPassword.errors"> is required</span>
+  </span>:-</label>
+    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" #confirmPassword="ngModel" name="confirmPassword"
+     required id="confirmPassword" [(ngModel)]="signUpData.confirmPassword">
+  </div>
+
+  <div *ngIf="passwords.errors?.passwordCheck && (confirmPassword.dirty )" [ngClass]="{ 'invalid-feedback':passwords.errors?.passwordCheck   } " >
+    Passwords do not match.
+  </div><br>
+</div>
+<!-- email div end -->
 
 <!-- married status radio button start -->
               
@@ -227,7 +267,8 @@
       <div class="form-submit">
           <button type="submit" > Submit </button>
           <button type="reset"> Reset </button>
-          </div>
+        </div>
       </form>
-</div>
+    </div>
+ 
 

@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { socketConnectionService } from '../socketConnection.service';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as isValid from '../must-match-password.directive';
+
 
 @Component({
   selector: 'sign-up',
@@ -16,17 +19,26 @@ export class SignUpComponent implements OnInit {
   successMessage = false;
   dangeMessage = false;
   checkEmailMessage:any;
+  passwordMatch:any;
   emailBorderSuccessMessage = false;
 
+  password1: any; 
+  password2: any;
+
   constructor(private http:HttpClient,private socket:socketConnectionService,private router:Router){
-  
     this.socket.serverMessage$.subscribe(data=>{
         this.checkEmailMessage = '';  
       (!data.exists)?this.emailBorderSuccessMessage = true
       :this.checkEmailMessage = data.exists;
   })
   
+    this.socket.passwordMatch$.subscribe(data=>{
+      this.passwordMatch = data;
+  })
+  
+  
   }
+
 
 
   ngOnInit() { }
@@ -51,9 +63,16 @@ changeValue(e:any,name_of_object:any) {
 
 
 onSubmit() {
+  console.log(this.emailBorderSuccessMessage );
+    console.log(this.passwordMatch);
   if(!this.emailBorderSuccessMessage)
-  { alert('check your email id again');
+  {
+    alert('check your data again');
+    
 }
+else
+{ 
+
   
   this.http.post('http://localhost:3000/signUpPannel',this.signUpData)
   .subscribe(datas=>{
@@ -62,10 +81,10 @@ onSubmit() {
       this.router.navigate(['/verify']);      
     }
   })
+}
 
 
 }
-
 
 
 }

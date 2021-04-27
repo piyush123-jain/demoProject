@@ -13,6 +13,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoginComponent } from './login/login.component';
 import { VerifyEmailComponent } from './verify-email/verify-email.component';
 import { CommonModule } from '@angular/common';
+import { MustMatchPasswordDirective } from './must-match-password.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
     SignUpComponent,
     LoginComponent,
     VerifyEmailComponent,
+    MustMatchPasswordDirective,
  ],
   imports: [FormsModule,
     HttpClientModule,CommonModule,

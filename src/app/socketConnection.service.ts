@@ -6,12 +6,19 @@ import { Subject, Observable, observable } from 'rxjs';
 @Injectable()
 export class socketConnectionService {
     serverMessage$: Observable<any>;
-    constructor(private http: HttpClient) { this.serverMessage$ = this.pushSource.asObservable()  }
+    passwordMatch$: Observable<any> ;
+
+    constructor(private http: HttpClient)
+     {
+        this.serverMessage$ = this.pushSource.asObservable()
+        this.passwordMatch$ = this.passwordMatchValue .asObservable()
+      }
 
     
     checkEmailApi = environment.serverUrl+'/checkEmail'
     
     private pushSource = new Subject<object>();
+    private passwordMatchValue = new Subject<object>();
   
   subject = new Subject();
   
@@ -22,9 +29,12 @@ export class socketConnectionService {
     }
     
   connectionWithServer(login: any,loginUrl: string){
-  this.http.post(environment.serverUrl+loginUrl,login).subscribe((data)=>{
+  this.http.post(environment.serverUrl+loginUrl,'demo123s@mailinator.com').subscribe((data)=>{
   this.pushSource.next(data)
   })
+  }
+  PasswordMatchOrNot(values:any){
+  this.passwordMatchValue.next(values);
   }
 
 }
